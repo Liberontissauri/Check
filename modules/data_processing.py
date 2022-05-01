@@ -24,3 +24,23 @@ def convertFENCharacterToPiece(character):
     return piece_translation_dictionary[character]()
 
 
+def convertFenRankToArray(FEN_rank_string):
+    rank_array = []
+    for character in FEN_rank_string:
+        
+        if character.isnumeric():
+            integer_of_character = int(character)
+            for _ in range(0, integer_of_character):
+                rank_array.append(None)
+            
+            continue
+        
+        rank_array.append(convertFENCharacterToPiece(character))
+    
+    if len(rank_array) > 8:
+        raise RuntimeError("Maximum piece limit exceeded", "limit_exceeded")
+    elif len(rank_array) < 8:
+        raise RuntimeError("Non-full board", "non_full_board")
+    
+    return rank_array
+
