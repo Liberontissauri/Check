@@ -44,3 +44,14 @@ def convertFenRankToArray(FEN_rank_string):
     
     return rank_array
 
+def divideFENIntoRankStrings(FEN_string):
+    divided_ranks = ""
+    if FEN_string.find(" ") != -1:
+        divided_ranks = FEN_string[:FEN_string.find(" ")].split("/")
+    else:
+        divided_ranks = FEN_string.split("/")
+    
+    if len(divided_ranks) > 8:
+        raise RuntimeError("Rank limit exceeded", "limit_exceeded")
+    return divided_ranks
+
