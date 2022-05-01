@@ -55,3 +55,13 @@ def divideFENIntoRankStrings(FEN_string):
         raise RuntimeError("Rank limit exceeded", "limit_exceeded")
     return divided_ranks
 
+def convertFENTo2DArray(FEN_string):
+    finished_board = [] # parent array has the y axis and the inner arrays the x axis
+    
+    ranks = divideFENIntoRankStrings(FEN_string)
+    for rank_index in range(0, len(ranks)):
+        rank = ranks[len(ranks) - rank_index - 1]
+        finished_board.insert(rank_index, convertFenRankToArray(rank))
+
+    return finished_board
+
