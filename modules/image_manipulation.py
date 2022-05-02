@@ -15,3 +15,22 @@ def replaceColor(image, target_color, replacement_color):
     final_image = Image.fromarray(image_arr)
 
     return final_image
+
+def loadPieceImages():
+    PIECE_NAMES = (
+        "king","queen","bishop","pawn","rook","knight"
+    )
+    piece_image_object= {"white": {}, "black": {}}
+
+    #Load white pieces
+    for piece in PIECE_NAMES:
+        piece_img = Image.open("./resources/img/piece-set/white/{piece}.png".format(piece = piece))
+        piece_image_object["white"][piece] = piece_img
+    
+    #Load black pieces
+    for piece in PIECE_NAMES:
+        piece_img = Image.open("./resources/img/piece-set/black/{piece}.png".format(piece = piece))
+        piece_image_object["black"][piece] = piece_img
+
+    return piece_image_object
+
