@@ -16,7 +16,7 @@ def convertFENCharacterToPiece(character):
         "q": lambda: Piece("queen", "black"),
         "Q": lambda: Piece("queen", "white"),
         "k": lambda: Piece("king", "black"),
-        "K": lambda: Piece("king", "bwhite"),
+        "K": lambda: Piece("king", "white"),
     }
     translated_piece = piece_translation_dictionary.get(character)
     if translated_piece is None:
