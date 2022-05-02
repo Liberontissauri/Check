@@ -34,3 +34,23 @@ def loadPieceImages():
 
     return piece_image_object
 
+def generateBoard(board, image_size, dark_square_color, light_square_color):
+    piece_img_object = loadPieceImages();
+
+    dark_squares_img = Image.open("./resources/img/dark_squares.png")
+    light_squares_img = Image.open("./resources/img/light_squares.png")
+
+    dark_squares_img = replaceColor(dark_squares_img, "#fff", dark_square_color)
+    light_squares_img = replaceColor(light_squares_img, "#fff", light_square_color)
+
+    dark_squares_img = dark_squares_img.resize((image_size, image_size))
+    light_squares_img = light_squares_img.resize((image_size, image_size))
+
+    full_board_img = Image.alpha_composite(dark_squares_img, light_squares_img)
+    for y in range(0, len(board)):
+        rank = board[len(board) - y - 1]
+        for x, piece in enumerate(rank):
+            if piece != None:
+                full_board_img.alpha_composite(piece_img_object[piece.team][piece.name].resize((int(image_size/8 * 0.95), int(image_size/8 * 0.95))), dest = (int((image_size/8) * x), int(image_size/8 * y)))
+    
+    return full_board_img
