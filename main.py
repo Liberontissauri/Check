@@ -3,7 +3,6 @@ from modules import data_processing as DataProcessing
 from modules import image_manipulation as ImageManipulation
 from starlette.responses import StreamingResponse
 import io
-import time
 app = FastAPI()
 
 
