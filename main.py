@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from modules import data_processing as DataProcessing
 from modules import image_manipulation as ImageManipulation
 from starlette.responses import StreamingResponse
@@ -9,6 +9,8 @@ app = FastAPI()
 
 @app.get("/api/board")
 async def getBoard(FEN: str, size: int, dark: str, light: str):
+    if size > 1300:
+        raise HTTPException(status_code=400, detail="Image size should be equal or lower to 1300px")
     dark = "#" + dark
     light = "#" + light
     
