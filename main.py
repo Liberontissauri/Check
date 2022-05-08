@@ -23,7 +23,7 @@ if config["RATE_LIMITED"] == "FALSE":
     rate_limit = [1000000000, 1]
 
 @app.get("/api/board", dependencies=[Depends(RateLimiter(times=rate_limit[0], seconds=rate_limit[1]))])
-async def getBoard(FEN: str, size: int, dark: str, light: str):
+def getBoard(FEN: str, size: int, dark: str, light: str):
     if size > 1300:
         raise HTTPException(status_code=400, detail="Image size should be equal or lower to 1300px")
     dark = "#" + dark
