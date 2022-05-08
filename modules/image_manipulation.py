@@ -34,8 +34,11 @@ def loadPieceImages():
 
     return piece_image_object
 
+
+piece_img_object = loadPieceImages()
+
 def generateBoard(board, image_size, dark_square_color, light_square_color):
-    piece_img_object = loadPieceImages()
+    
 
     dark_squares_img = Image.open("./resources/img/dark_squares.png")
     light_squares_img = Image.open("./resources/img/light_squares.png")
