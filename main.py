@@ -1,7 +1,7 @@
 from dotenv import dotenv_values
 config = dotenv_values(".env")
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Response
 from modules import data_processing as DataProcessing
 from modules import image_manipulation as ImageManipulation
 from starlette.responses import StreamingResponse
@@ -37,3 +37,8 @@ async def getBoard(FEN: str, size: int, dark: str, light: str):
     buffer.seek(0)
 
     return StreamingResponse(content=buffer, media_type="image/png")
+
+#stress testing urls
+@app.get(f"/{config['LOADER_IO_TOKEN']}")
+def loaderioAuthentication():
+    return Response(content = config["LOADER_IO_TOKEN"])
