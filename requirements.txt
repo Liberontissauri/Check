@@ -1,0 +1,7 @@
+numpy
+pillow
+aioredis
+uvicorn
+fastapi
+python-dotenv
+https://github.com/hardbyte/fastapi-limiter/archive/patch-1.zip
